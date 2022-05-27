@@ -1,0 +1,18 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block content %}
+  <p> Статьи </p>
+  <ul>
+
+      {% for topic in topics %}
+          <li>
+            <img src="{{topic.photo.url}}">
+            <p> {{ topic.title }}</p>
+            <p> {{ topic.text | linebreaks }}</p>
+          </li>
+          {% empty %}
+            <li> Здесь скоро появятся интересные статьи </li>
+      {% endfor %}
+
+  </ul>
+{% endblock content %}  

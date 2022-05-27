@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ru">
+{% load static %}
+<head>
+    <title> Phoenix Flamme </title>
+    <p>
+        <a href="{% url 'main:index' %}"></a>
+        <a href="{% url 'main:categories' %}" > Категории товаров </a>
+        <a href="{% url 'main:topics' %}" > Статьи </a>
+    </p>
+</head>
+
+<body>
+    <p>
+        <link rel="stylesheet" href="{% static 'main.css' %}" > -
+        {% block content %}{% endblock content %}
+    </p>
+</body>
