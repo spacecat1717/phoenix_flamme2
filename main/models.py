@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.utils.translation import gettext_lazy as _
 
 
 class Category(models.Model):
@@ -20,6 +21,10 @@ class Item(models.Model):
     photo1 = models.ImageField(upload_to = 'static/')
     photo2 = models.ImageField(upload_to = 'static/')
     small = False #need to add small list what will save in cart
+
+    def get_absolute_url(self):
+        return reverse('main:item', args=[self.id])
+        
     def __str__(self):
         return self.title
 

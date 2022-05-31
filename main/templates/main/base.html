@@ -1,4 +1,4 @@
-
+<!--base template-->
 <!DOCTYPE html>
 <html lang="ru">
 {% load static %}
@@ -8,12 +8,12 @@
         <a href="{% url 'main:index' %}"></a>
         <a href="{% url 'main:categories' %}" > Категории товаров </a>
         <a href="{% url 'main:topics' %}" > Статьи </a>
+        <a href="{% url 'cart:detail_cart' %}"> Корзина </a>
     </p>
 </head>
 
 <body>
     <p>
-        <link rel="stylesheet" href="{% static 'main.css' %}" > -
-        {% block content %}{% endblock content %}
+                {% block content %}{% endblock content %}
     </p>
 </body>

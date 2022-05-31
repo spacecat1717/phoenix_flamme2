@@ -10,12 +10,10 @@
           <p> Название {{ item.title}} </p>
           <p> Краткое описание {{ item.description | linebreaks }} </p>
           <p> Большое описание {{ item.text | linebreaks }}</p>
-          <p> Количество  {{ item.quantity }} </p>
+          <p> Цена {{ item.price }} рублей </p>
           
-          <form action="{% url 'main:change_quan' item.id %}" method="get" >
-            {% csrf_token %}
-            <button type="submit" name="change_quan" > + </button> 
-        </form>    
+          
+           
       </li>
     {% endblock content %}
       
