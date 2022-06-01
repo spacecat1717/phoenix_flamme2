@@ -3,10 +3,11 @@
 {% block content %}
     <h2>Корзина</h2>
     <li>
-        {% for item in object_list %}
+        {% for cart_item in cart_items %}
             <img src="{{item.photo1.url}}">
-            <p>{{ item.title }}</p>
+            <p>{{ product.title }}</p>
             <p>{{ item.price }}</p>
+            <p> {{ item.size }}</p>
             <p>{{ item.quantity }}</p>
         {% endfor %}
     </li>

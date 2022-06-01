@@ -4,17 +4,20 @@
 
 <body>
     {% block content %}
-      <li>
-          <img src="{{item.photo1.url}}">
-          <img src="{{item.photo2.url}}">
-          <p> Название {{ item.title}} </p>
-          <p> Краткое описание {{ item.description | linebreaks }} </p>
-          <p> Большое описание {{ item.text | linebreaks }}</p>
-          <p> Цена {{ item.price }} рублей </p>
-          
-          
-           
-      </li>
+  
+      <img src="{{item.photo1.url}}">
+      <img src="{{item.photo2.url}}">
+      <p> Название {{ item.title}} </p>
+      <p> Краткое описание {{ item.description | linebreaks }} </p>
+      <p> Большое описание {{ item.text | linebreaks }}</p>
+      <p> Цена {{ item.price }} рублей </p>
+      
+      <form action="{% url 'main:item' item.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <button name="submit">В корзину</button>
+      </form>  
+    
     {% endblock content %}
       
 

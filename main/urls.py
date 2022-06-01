@@ -3,15 +3,16 @@ from . import views
 
 app_name = 'main'
 urlpatterns = [
+    #basic urls
     path('', views.index, name='index'),
     path('categories/', views.categories, name='categories'),
     path('categories/<category_id>/', views.category, name='category'),
     path('topics/', views.topics, name='topics'),
     path('categories/category/<item_id>/', views.item, name="item"),
+    #cart urls
+    path('cart/', views.show_cart, name='cart'),
+    path('cart/add/<item_id>/', views.add_to_cart, name='cart_add'),
     
     
-    
-
-
 
 ]

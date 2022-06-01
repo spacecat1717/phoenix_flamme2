@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect, reverse
-from django.utils.translation import gettext_lazy as _
-from .models import Category, Item, Topic
+from django.shortcuts import render, redirect
+
+from .models import Category, Item, Topic, Cart, CartItem
+from .forms import AddForm
 
 
 def index (request):
@@ -29,10 +30,31 @@ def topics(request):
 def item(request, item_id):
     """one item page"""
     item = Item.objects.get(id=item_id)
-    context = {'item': item}
+    form = AddForm(request.POST, instance=item)
+    if request.method == 'POST':
+        add_to_cart(request, item_id)
+    #        cart_item = form.save()
+    #        print('saved')
+    #        return redirect ('main:cart')
+    context = {'item': item, 'form':form}
     return render(request, 'main/item.html', context)
 
+def show_cart(request):
+    cart_items = CartItem.objects.all()
+    if cart_item.small != "standart": 
+        cart_item.price -= 100
+    context = {'cart_items': cart_items}
+    return render(request, 'main/detail_cart.html', context)
 
+def add_to_cart(request, item_id):
+        item = Item.objects.get(id=item_id)
+        category = item.category
+        form = AddForm(request.POST, instance=item)
+        if request.method == 'POST':
+            cart_item = form.save()
+            print('saved')
+            return redirect ('main:cart')
+        return render(request, 'main/item.html')
         
 
    
