@@ -2,14 +2,6 @@ from django.db import models
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
-"""Cart model"""
-
-class Cart(models.Model):
-    """Class for cart"""
-    title = models.CharField(max_length = 100)
-    def __str__(self):
-        return self.title
-
 
 """Basic models"""
 
@@ -30,10 +22,10 @@ class Item(models.Model):
     price = models.IntegerField(default=100)
     photo1 = models.ImageField(upload_to = 'static/')
     photo2 = models.ImageField(upload_to = 'static/')
-    #Добавлено для формы отправки в корзину
-    quantity = models.IntegerField(default=1)
-    small = models.CharField(max_length=20) 
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE) 
+    size = models.CharField(max_length=20) 
+    class Meta:
+        ordering = ('title',)
+     
     def __str__(self):
         return self.title
 

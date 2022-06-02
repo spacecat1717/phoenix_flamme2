@@ -10,8 +10,8 @@ urlpatterns = [
     path('topics/', views.topics, name='topics'),
     path('categories/category/<item_id>/', views.item, name="item"),
     #cart urls
-    path('cart/', views.show_cart, name='cart'),
-    path('cart/add/<item_id>/', views.add_to_cart, name='cart_add'),
+    
+    
     
     
 

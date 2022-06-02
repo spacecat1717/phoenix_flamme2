@@ -11,12 +11,12 @@
       <p> Краткое описание {{ item.description | linebreaks }} </p>
       <p> Большое описание {{ item.text | linebreaks }}</p>
       <p> Цена {{ item.price }} рублей </p>
-      
-      <form action="{% url 'main:cart_add' item.id %}" method="post">
-        {% csrf_token %}
-        {{ form.as_p}}
-        <button name="submit">В корзину</button>
-      </form>  
+    
+      <form action="{% url 'cart:cart_add' item.id %}" method="post">
+          {{ cart_product_form }}
+          {% csrf_token %}
+          <input type="submit" value="Добавить в корзину">
+      </form>
     
     {% endblock content %}
       
