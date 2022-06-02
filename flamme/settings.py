@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'flamme.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'phoenix_db2',
+        'NAME': 'phoenix_db3',
         
     }
 }

@@ -12,7 +12,7 @@
       <p> Большое описание {{ item.text | linebreaks }}</p>
       <p> Цена {{ item.price }} рублей </p>
       
-      <form action="{% url 'main:item' item.id %}" method="post">
+      <form action="{% url 'main:cart_add' item.id %}" method="post">
         {% csrf_token %}
         {{ form.as_p}}
         <button name="submit">В корзину</button>
