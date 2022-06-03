@@ -14,7 +14,7 @@ class Category(models.Model):
         return self.title
 
 class Item(models.Model):
-    """Class for item"""
+    """Class for items"""
     category = models.ForeignKey(Category, on_delete = models.CASCADE)
     title = models.CharField(max_length=150)
     description = models.CharField(max_length=250)
@@ -29,7 +29,7 @@ class Item(models.Model):
     def __str__(self):
         return self.title
 
-"""Topics models"""
+"""Other models"""
 
 class Topic(models.Model):
     """Class for topic"""
@@ -39,5 +39,12 @@ class Topic(models.Model):
     def __str__(self):
         return self.title
 
-
+class Feedback(models.Model):
+    """Feedback model"""
+    name = models.CharField(max_length=100)
+    text = models.TextField()
+    photo = models.ImageField(upload_to = 'static/feedback/%Y-%m-%d/')
+    date_added = models.DateTimeField(auto_now_add=True) 
+    def __str__(self):
+        return self.name
 

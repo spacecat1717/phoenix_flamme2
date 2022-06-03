@@ -1,0 +1,12 @@
+<!--new feedback template-->
+{% extends "main/base.html" %}
+
+{% block content %}
+  <p> Оставить отзыв </p>
+  <form action="{% url 'main:add_feedback' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input type="file" name="feedback">
+      {{ form.as_p }}
+      <button name='submit' > Отправить</button>
+  </form>
+{% endblock content %}

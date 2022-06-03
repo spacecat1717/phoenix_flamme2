@@ -1,0 +1,21 @@
+<!--feedbacks template-->
+{% extends "main/base.html" %}
+{% load static %}
+{% block content %}
+
+  <h2> Отзывы </h2>
+  <ul>
+      <a href="{% url 'main:add_feedback' %}">Оставить отзыв </a>
+      {% for feedback in feedbacks %}
+         <li>
+              {% if feedback.photo %}
+                 <p><a href="{{ file_url }}" width="400" height="800"> {{ file_url }}</a></p>
+              {% endif %}
+             <p> {{ feedback.name }} </p>
+             <p> {{ feedback.text | linebreaks }} </p>
+         </li>
+          {% empty %}
+            <h3> Отзывов пока нет </h3>
+      {% endfor %}  
+  </ul>
+  {% endblock content %}
