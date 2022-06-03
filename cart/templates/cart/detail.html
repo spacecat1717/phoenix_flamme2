@@ -22,26 +22,25 @@
                 <tr>
                     <td>
                         <a href="{{ item.get_absolute_url }}">
-                            <img src="{{item.photo1.url}}">
+                            <img src="{{product.photo1.url}}" width="100" height="100">
                         </a>
                     </td>
-                    <td>{{ product.name }}</td>
+                    <td>{{ product.title }}</td>
                     <td>{{ item.quantity }}</td>
-                    <td><a href="{% url "cart:cart_remove" product.id%}">Remove</a></td>
-                    <td class="num">${{ item.price }}</td>
-                    <td class="num">${{ item.total_price }}</td>
+                    <td> <a href="{% url 'cart:cart_remove' product.id %}"> Удалить товар </a></td>
+                    <td class="num">₽{{ item.price }}</td>
+                    <td class="num">₽{{ item.total_price }}</td>
                 </tr>
             {% endwith %}
         {% endfor %}
         <tr class="total">
             <td>Total</td>
             <td colspan="4"></td>
-            <td class="num">${{ cart.get_total_price }}</td>
+            <td class="num">₽{{ cart.get_total_price }}</td>
         </tr>
         </tbody>
     </table>
     <p class="text-right">
-        <a href="{% url 'shop:product_list' %}" class="button light">Continue shopping</a>
-        <a href="#" class="button">Checkout</a>
+        <a href="{% url 'main:categories' %}" class="button light">Продолжить покупки</a>
     </p>
 {% endblock %}
