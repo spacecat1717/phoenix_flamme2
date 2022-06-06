@@ -20,12 +20,12 @@ class Item(models.Model):
     description = models.CharField(max_length=250)
     text = models.TextField()
     price = models.IntegerField(default=100)
-    photo1 = models.ImageField(upload_to = 'static/')
-    photo2 = models.ImageField(upload_to = 'static/')
+    photo1 = models.ImageField(upload_to = 'media/main/static/')
+    photo2 = models.ImageField(upload_to = 'media/main/static/')
     size = models.CharField(max_length=20) 
     class Meta:
         ordering = ('title',)
-     
+        
     def __str__(self):
         return self.title
 
@@ -35,7 +35,7 @@ class Topic(models.Model):
     """Class for topic"""
     title = models.CharField(max_length = 200)
     text = models.TextField()
-    photo = models.ImageField(upload_to = 'static/')
+    photo = models.ImageField(upload_to = 'media/main/static/')
     def __str__(self):
         return self.title
 
