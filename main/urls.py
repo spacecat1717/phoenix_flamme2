@@ -1,5 +1,9 @@
 from django.urls import path
+from django.conf.urls.static import static
+from django.conf import settings
 from . import views
+
+
 
 app_name = 'main'
 urlpatterns = [
@@ -14,5 +18,4 @@ urlpatterns = [
     path('feedbacks/', views.feedback_list, name='feedback_list'),
     path('feedbacks/new_feedback/', views.add_feedback, name='add_feedback'),
    
-    
 ]

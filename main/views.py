@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-
+from django.views.generic import CreateView
 from django.core.files.storage import FileSystemStorage
 from .models import Category, Item, Topic, Feedback
 from cart.forms import CartAddProductForm
@@ -44,19 +44,16 @@ def topics(request):
 def add_feedback(request):
     """new feedback"""
     form = FeedbackForm()
-    if request.method != 'POST':
-        form = FeedbackForm()
-    elif request.method == 'POST':
-        photo = request.FILES['feedback']
-        fs = FileSystemStorage()
-        filename = fs.save(photo, photo)
-        file_url = fs.url(filename)
-        form = FeedbackForm(request.POST)
+    if request.method == 'POST':
+        form = FeedbackForm(request.POST, request.FILES)
         if form.is_valid():
-         new_feedback = form.save()
-         return redirect('main:feedback_list')
-    context = {'form': form}
-    return render (request, 'main/new_feedback.html', context)
+            form.save()
+            img_obj = form.instance
+            return  redirect('main:feedback_list')
+        else:    
+            form = FeedbackForm()
+    return render (request, 'main/new_feedback.html', {'form': form})
+
 
 def feedback_list(request):
     """list of feedbacks"""

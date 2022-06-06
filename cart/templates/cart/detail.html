@@ -32,9 +32,9 @@
                     <td class="num">₽{{ item.price }}</td>
                     <td class="num">₽{{ item.total_price }}</td>
                 </tr>
-                {% empty %}
-                  <h3> В корзине пока пусто </h3>
             {% endwith %}
+            {% empty %}
+              <h3> В корзине пока пусто </h3>
         {% endfor %}
         <tr class="total">
             <td>Total</td>

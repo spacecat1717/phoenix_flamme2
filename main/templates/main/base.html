@@ -1,21 +1,18 @@
 <!--base template-->
+{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
-{% load static %}
-<head>
-    <title> Phoenix Flamme </title>
-    <p>
-        <a href="{% url 'main:index' %}"></a>
-        <a href="{% url 'main:categories' %}" > Категории товаров </a>
-        <a href="{% url 'main:topics' %}" > Статьи </a>
-        <a href="{% url 'cart:cart_detail' %}" > Корзина </a>
-        <a href="{% url 'main:feedback_list' %}" > Отзывы </a>
-        
-    </p>
-</head>
 
+<head> 
+    <title> Phoenix Flamme  </title>
+</head>
 <body>
-    <p>
-                {% block content %}{% endblock content %}
-    </p>
+  <p>
+      <a href="{% url 'main:index' %}"> Phoenix Flamme</a>
+      <a href="{% url 'main:categories' %}"> Товары</a>
+      <a href="{% url 'main:topics' %}">Статьи</a>
+      <a href="{% url 'main:feedback_list' %}">Отзывы</a>
+      <a href="{% url 'cart:cart_detail' %}"> Корзина</a>
+  </p>
+  {% block content %} {% endblock content %}
 </body>

@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     #project
     'main',
     'cart',
+    #for design
+    'bootstrap4',
     
     
     ]
@@ -131,6 +133,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+import os
+
 STATIC_URL = 'static/'
 #STATIC_ROOT = '/home/spacecat/CODE/phoenix_flamme_site/phoenix_flamme/static/'
 
@@ -143,6 +147,9 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     #'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
 # Default primary key field type

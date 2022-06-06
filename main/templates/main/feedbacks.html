@@ -8,9 +8,7 @@
       <a href="{% url 'main:add_feedback' %}">Оставить отзыв </a>
       {% for feedback in feedbacks %}
          <li>
-              {% if feedback.photo %}
-                 <p><a href="{{ file_url }}" width="400" height="800"> {{ file_url }}</a></p>
-              {% endif %}
+            <img src="{{ feedback.photo.url }}" width="300" height="500">
              <p> {{ feedback.name }} </p>
              <p> {{ feedback.text | linebreaks }} </p>
          </li>
