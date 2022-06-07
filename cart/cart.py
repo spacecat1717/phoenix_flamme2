@@ -29,6 +29,7 @@ class Cart(object):
             self.cart[product_id]['quantity'] = quantity
         else:
             self.cart[product_id]['quantity'] += quantity
+        #change price if user choose small size
         if change_size:
             self.cart[product_id]['price'] -=100
         self.save()

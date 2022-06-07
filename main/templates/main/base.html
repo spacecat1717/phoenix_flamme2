@@ -12,7 +12,19 @@
       <a href="{% url 'main:categories' %}"> Товары</a>
       <a href="{% url 'main:topics' %}">Статьи</a>
       <a href="{% url 'main:feedback_list' %}">Отзывы</a>
-      <a href="{% url 'cart:cart_detail' %}"> Корзина</a>
+      <div class="cart">
+        {% with total_items=cart|length %}
+            {% if cart|length > 0 %}
+                Ваша корзина:
+                <a href="{% url 'cart:cart_detail' %}">
+                    {{ total_items }} шт, 
+                    ₽{{ cart.get_total_price }}
+                </a>
+            {% else %}
+                Корзина пока пуста
+            {% endif %}
+        {% endwith %}
+    </div>
   </p>
   {% block content %} {% endblock content %}
 </body>
