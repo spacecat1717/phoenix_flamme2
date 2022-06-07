@@ -11,6 +11,7 @@
       <p> Краткое описание {{ item.description | linebreaks }} </p>
       <p> Большое описание {{ item.text | linebreaks }}</p>
       <p> Цена {{ item.price }} рублей </p>
+      <p> Размер {{ item.size }}  </p>
     
       <form action="{% url 'cart:cart_add' item.id %}" method="post">
           {{ cart_product_form }}

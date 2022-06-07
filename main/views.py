@@ -27,7 +27,7 @@ def category(request, category_id):
 def item(request, item_id):
     """one item page"""
     item = Item.objects.get(id=item_id)  
-    cart_product_form = CartAddProductForm()    
+    cart_product_form = CartAddProductForm()   
     context = {'item': item, 'cart_product_form': cart_product_form}
     return render(request, 'main/item.html', context)
 

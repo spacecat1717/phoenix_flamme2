@@ -12,6 +12,7 @@
             <th>Image</th>
             <th>Product</th>
             <th>Quantity</th>
+            <th>Size</th>
             <th>ID</th>
             <th>Remove</th>
             <th>Unit price</th>
@@ -29,6 +30,7 @@
                     </td>
                     <td>{{ product.title }}</td>
                     <td>{{ item.quantity }}</td>
+                    <td>{{ item.size }}</td>
                     <td>{{ product.id }}</td> <!--works!-->
                     <td> <a href="{% url 'cart:cart_remove' product.id %}"> Удалить товар </a>
                     <td class="num">₽{{ item.price }}</td>
