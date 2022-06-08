@@ -9,6 +9,7 @@ class Order(models.Model):
     city = models.CharField(max_length=200)
     address = models.CharField(max_length=350)
     postal_code = models.CharField(max_length=20)
+    comment = models.CharField(max_length=350)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
@@ -30,6 +31,7 @@ class OrderItem(models.Model):
         price = models.DecimalField(max_digits=10, decimal_places=2)
         quantity = models.PositiveIntegerField(default=1)
         size = models.BooleanField(default=False)
+        comment = models.CharField(max_length=350)
         def __str__(self):
             return '{}'.format(self.id)
 
