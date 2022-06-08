@@ -12,6 +12,7 @@ urlpatterns = [
     path('categories/', views.categories, name='categories'),
     path('categories/<category_id>/', views.category, name='category'),
     path('categories/category/<item_id>/', views.item, name="item"),
+    path('contacts/', views.contacts, name='contacts'),
     #topics urls
     path('topics/', views.topics, name='topics'),
     #feedback urls

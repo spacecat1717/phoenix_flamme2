@@ -1,0 +1,9 @@
+{% extends "main/base.html" %}
+{% block content %}
+  <h1>Контакты</h1>
+  {% for contact in contacts %}
+    <p>ВК {{ contact.vk }}</p>
+    <p>Почта {{ contact.email }}</p>
+    <p>Телеграм {{ contact.tlg }}</p>
+  {% endfor %}
+{% endblock content %}

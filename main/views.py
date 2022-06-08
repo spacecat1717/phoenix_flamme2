@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView
 from django.core.files.storage import FileSystemStorage
-from .models import Category, Item, Topic, Feedback
+from .models import Category, Item, Topic, Feedback, Contacts
 from cart.forms import CartAddProductForm
 from .forms import FeedbackForm
 
@@ -60,6 +60,13 @@ def feedback_list(request):
     feedbacks = Feedback.objects.order_by('-date_added')
     context = {'feedbacks': feedbacks}
     return render (request, 'main/feedbacks.html', context)
+
+"""contacts view"""
+
+def contacts(request):
+    contacts = Contacts.objects.all()
+    context = {'contacts': contacts}
+    return render (request, 'main/contacts.html', context)
 
 
 

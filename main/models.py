@@ -49,3 +49,12 @@ class Feedback(models.Model):
     def __str__(self):
         return self.name
 
+class Contacts(models.Model):
+    """For contacts page"""
+    title = models.CharField(max_length=100)
+    vk = models.URLField(max_length=150)
+    email = models.EmailField(max_length=150)
+    tlg = models.URLField(max_length=150)
+    def __str__(self):
+        return self.title
+
