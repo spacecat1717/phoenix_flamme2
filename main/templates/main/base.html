@@ -13,6 +13,7 @@
       <a href="{% url 'main:topics' %}">Статьи</a>
       <a href="{% url 'main:feedback_list' %}">Отзывы</a>
       <a href="{% url 'main:contacts' %}">Контакты</a>
+      <a href="{% url 'main:info' %}"> Информация</a>
       <div class="cart">
         {% with total_items=cart|length %}
             {% if cart|length > 0 %}

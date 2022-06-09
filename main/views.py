@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView
 from django.core.files.storage import FileSystemStorage
-from .models import Category, Item, Topic, Feedback, Contacts
+from .models import Category, Item, Topic, Feedback, Contacts, Info
 from cart.forms import CartAddProductForm
 from .forms import FeedbackForm
 
@@ -67,6 +67,11 @@ def contacts(request):
     contacts = Contacts.objects.all()
     context = {'contacts': contacts}
     return render (request, 'main/contacts.html', context)
+
+def info(request):
+    parts = Info.objects.all()
+    context = {'parts': parts}
+    return render (request, 'main/info.html', context)
 
 
 

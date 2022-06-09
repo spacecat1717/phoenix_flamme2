@@ -1,0 +1,11 @@
+{% extends "main/base.html" %}
+{% block content %}
+  <h1> Информация</h1>
+    {% for part in parts %}
+      <li>
+          <h3>{{ part.title }}</h3>
+          {{ part.text }}
+      </li>
+    {% endfor %}
+{% endblock content %}
+  
