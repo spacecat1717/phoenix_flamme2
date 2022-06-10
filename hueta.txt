@@ -3,3 +3,16 @@
 <td> <a href="{% url 'cart:cart_remove' item.id %}"> Удалить товар </a></td>
 
 
+"""DB"""
+conn = sqlite3.connect('/home/spacecat/CODE/phoenix_flamme2/phoenix_db3', check_same_thread=False)
+cursor = conn.cursor()
+
+
+#for DB
+def get_order_info (order_id):
+    cursor.execute('SELECT * FROM orders_order WHERE id=order_id')
+    result = cursor.fetchall()
+    conn.close()
+    return result
+
+
