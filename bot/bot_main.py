@@ -16,7 +16,7 @@ def get_order_info (update,order_id):
                     FROM orders_order WHERE id=?""", (order_id,))
         customer_data = cursor.fetchall()
         #execute items data
-        cursor.execute("""SELECT main_item.title, orders_orderitem.quantity, orders_orderitem.price
+        cursor.execute("""SELECT main_item.title, orders_orderitem.quantity, orders_orderitem.total_price
                        FROM main_item INNER JOIN orders_orderitem 
                         ON main_item.id=orders_orderitem.product_id WHERE orders_orderitem.order_id=?""", (order_id,))
         item_data = cursor.fetchall()                 
@@ -53,7 +53,7 @@ def distributor(update, context):
 
 """main func"""
 def main():
-    TOKEN = "token here"
+    TOKEN = "5303733211:AAGWjltJu7TnjA1DonWMp18KYyZSDDq0i0c"
     #create updater
     updater = Updater(TOKEN, use_context=True)
     dispatcher = updater.dispatcher
