@@ -53,7 +53,7 @@ def distributor(update, context):
 
 """main func"""
 def main():
-    TOKEN = "5303733211:AAGWjltJu7TnjA1DonWMp18KYyZSDDq0i0c"
+    TOKEN = " "
     #create updater
     updater = Updater(TOKEN, use_context=True)
     dispatcher = updater.dispatcher
