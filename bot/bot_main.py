@@ -1,5 +1,7 @@
 import sqlite3, time
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackQueryHandler, CallbackContext
+from telegram import InlineKeyboardMarkup, InlineKeyboardButton
+
 
 
 """DB connect"""
@@ -13,7 +15,7 @@ executed = 0
 def timer(update, context):
     """timer for db upgrade"""
     while True:
-        limit = 10800
+        limit = 10800 #3 hours
         time.sleep(limit)
         db_count(update)   
 
@@ -53,8 +55,9 @@ def get_order_info (update,order_id):
         cursor.execute("""SELECT main_item.title, orders_orderitem.quantity, orders_orderitem.total_price
                        FROM main_item INNER JOIN orders_orderitem 
                         ON main_item.id=orders_orderitem.product_id WHERE orders_orderitem.order_id=?""", (order_id,))
-        item_data = cursor.fetchall()                 
-        return update.message.reply_text(f'Данные клиента: {customer_data} \n Товары: {item_data}')
+        item_data = cursor.fetchall()               
+        return update.message.reply_text(f'Данные клиента: {customer_data} \n Товары: {item_data}') 
+                                        
     except:
         return update.message.reply_text('Заказ не найден')
 
@@ -76,13 +79,30 @@ def orderinfo(update, context):
     order_id = int(update.message.text)
     get_order_info(update, order_id)
     
-    
-"""distribute user's text to func"""
+    """distribute user's text to func"""
 def distributor(update, context): #has a conflict between this func and others
     update.message.reply_text('Введи номер заказа')
     text_received = update.message.text
     if text_received.isnumeric():
         orderinfo(update, text_received)
+
+"""buttons funcs"""
+def button(update, context: CallbackContext):
+    """button control"""
+    update.message.reply_text("Beginning of inline keyboard")
+    keyboard = [
+        InlineKeyboardButton('Отправить трек', callback_data='send_track'),
+        ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    update.message.reply_text("TEST", reply_markup=reply_markup)
+
+def send_track(update, context: CallbackContext):
+    query = update.callback_query
+    query.answer()
+    choice = query.data
+    if choice == 'send_track':
+        #need to write func for track sending after I made email sending on site
+        print('IM A BUTTON, IM WORKING!')
 
 """main func"""
 def main():
@@ -93,13 +113,16 @@ def main():
     #handlers for base commands
     dispatcher.add_handler(CommandHandler('start', start))
     dispatcher.add_handler(CommandHandler('help', help))
-    dispatcher.add_handler(CommandHandler('timer', timer))
     #handlers for custom commands
     dispatcher.add_handler(CommandHandler('orderinfo', distributor))
     #text handler
-    dispatcher.add_handler(MessageHandler(Filters.text, distributor))
-    #TEST HANDLERS
-    #dispatcher.add_handler(CommandHandler('db_count', db_count)) #execute new orders
+    #dispatcher.add_handler(MessageHandler(Filters.text , distributor))
+    #SERVISE HANDLERS
+    dispatcher.add_handler(CommandHandler('db_count', db_count)) #execute new orders
+    dispatcher.add_handler(CommandHandler('timer', timer))
+    #buttons
+    updater.dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, distributor, button))
+    updater.dispatcher.add_handler(CallbackQueryHandler(send_track))
     #activate updates
     updater.start_polling()
     #run
