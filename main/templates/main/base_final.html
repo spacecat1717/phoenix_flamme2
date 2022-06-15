@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head> 
+    <meta charset="UTF-8">
+    <title> Phoenix Flamme  </title>
+    <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}" type="text/css">
+</head>
+<body>
+    <nav class="aside">
+        <img src="{% static 'logo.jpg' %}" width="75.8px" height="75.8" alt="logo">
+        <div class="container">
+            <p class="brand">Phoenix Flamme</p>
+                <ul class="menu">
+                  <li> <a href="{% url 'main:categories' %}" > Товары</a> </li>
+                  <li><a href="{% url 'main:topics' %}">Статьи</a></li>
+                  <li><a href="{% url 'main:feedback_list' %}">Отзывы</a> </li>
+                  <li><a href="{% url 'main:contacts' %}">Контакты</a> </li>
+                  <li><a href="{% url 'main:info' %}"> Информация</a> </li>
+                
+                    <li class="cart">
+                      {% with total_items=cart|length %}
+                        {% if cart|length > 0 %}
+                           Ваша корзина:
+                           <a href="{% url 'cart:cart_detail' %}">
+                            {{ total_items }} шт, 
+                             ₽{{ cart.get_total_price }}
+                           </a>
+                           {% else %}
+                           Корзина пока пуста
+                         {% endif %}
+                     {% endwith %} 
+                    </li>
+                </ul>
+        </div>
+    </nav>
+</body>
