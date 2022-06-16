@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'main',
     'cart',
     'orders',
+    'bot_main',
     #for design
     'bootstrap4',
     

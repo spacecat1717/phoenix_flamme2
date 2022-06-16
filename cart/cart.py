@@ -75,7 +75,7 @@ class Cart(object):
         Подсчет стоимости товаров в корзине.
         """
         return sum(item['price'] * item['quantity'] for item in
-                self.cart.values())
+                self.cart.values()) + 300
 
     def clear(self):
         # удаление корзины из сессии

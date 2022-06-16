@@ -21,6 +21,7 @@ def order_create(request):
                                          total_price=(item['price']*item['quantity']))
             # очистка корзины
             cart.clear()
+            delivery = order.delivery_price
             order_mail(email)
             return render(request, 'orders/order/created.html', {'order': order})
     else:
@@ -31,7 +32,7 @@ def order_mail(email):
     send_mail (
         'Заказ принят',
         'Спасибо за ваш заказ в магазине Phoenix Flamme. \n Сразу после отправки мы пришлем вам трек-номер :)\nХорощего дня!',
-        'manyam245@gmail.com', #need to make normal email!!!
+        'lea.candlespace@gmail.com', #need to make normal email!!!
         [email],
         fail_silently=False,
     )
