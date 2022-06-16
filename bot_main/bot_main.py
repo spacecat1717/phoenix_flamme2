@@ -49,7 +49,7 @@ def get_order_info (update,order_id):
         
         #execute customer's data
         cursor.execute("""SELECT id, first_name, last_name, email, 
-                    city, address, postal_code, created, paid, comment 
+                    city, address, postal_code, created, comment, delivery_price 
                     FROM orders_order WHERE id=?""", (order_id,))
         customer_data = cursor.fetchall()
         #execute items data
