@@ -1,37 +1,45 @@
 {% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
 <!DOCTYPE html>
 <html lang="ru">
 <head> 
-    <meta charset="UTF-8">
-    <title> Phoenix Flamme  </title>
-    <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}" type="text/css">
+  <title> Phoenix Flamme  </title>
 </head>
 <body>
-    <nav class="aside">
-        <img src="{% static 'logo.jpg' %}" width="75.8px" height="75.8" alt="logo">
-        <div class="container">
-            <p class="brand">Phoenix Flamme</p>
-                <ul class="menu">
-                  <li> <a href="{% url 'main:categories' %}" > Товары</a> </li>
-                  <li><a href="{% url 'main:topics' %}">Статьи</a></li>
-                  <li><a href="{% url 'main:feedback_list' %}">Отзывы</a> </li>
-                  <li><a href="{% url 'main:contacts' %}">Контакты</a> </li>
-                  <li><a href="{% url 'main:info' %}"> Информация</a> </li>
-                
-                    <li class="cart">
-                      {% with total_items=cart|length %}
-                        {% if cart|length > 0 %}
-                           Ваша корзина:
-                           <a href="{% url 'cart:cart_detail' %}">
-                            {{ total_items }} шт, 
-                             ₽{{ cart.get_total_price }}
-                           </a>
-                           {% else %}
-                           Корзина пока пуста
-                         {% endif %}
-                     {% endwith %} 
-                    </li>
-                </ul>
-        </div>
-    </nav>
+  <nav class="navbar navbar-expand-xxl" style="background-color: #E8E3B9">
+    <div class="container-fluid">
+      <a class="navbar-brand">Phoenix Flamme</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'main:categories' %}">Товары</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{% url 'main:categories' %}">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled">Disabled</a>
+          </li>
+        </ul>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </body>

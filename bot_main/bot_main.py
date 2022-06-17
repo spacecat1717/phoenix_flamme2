@@ -1,6 +1,7 @@
 import sqlite3, time
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackQueryHandler
-
+from django.conf import settings
+from orders.models import Order
 
 """DB connect"""
 conn = sqlite3.connect('/home/spacecat/CODE/phoenix_flamme2/phoenix_db3', check_same_thread=False)
@@ -28,7 +29,7 @@ def db_count(update):
         last_order = i[0]
     db_updater(last_order, update)
 
-def db_updater(last_order, update):# WORKS
+def db_updater(last_order, update):
     """check db for new orders and take all new orders"""
     global executed
     if last_order > executed:
@@ -94,8 +95,10 @@ def execute_email(update, order_id):
 def send_track(update, email):
     """sending track to customer"""
     global track
+    order = Order
     track_num = str(track)
-    #update.message.reply_text('Трек отправлен') 
+    order.send_track(email, track_num)
+    update.message.reply_text('Трек отправлен') 
     
     """distribute user's text to func"""
 def distributor(update, context): #has a conflict between this func and others (it's strange)

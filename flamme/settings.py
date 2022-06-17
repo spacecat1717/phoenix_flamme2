@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     'orders',
     'bot_main',
     #for design
-    'bootstrap4',
+    'bootstrap5',
     
     
     ]

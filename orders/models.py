@@ -1,6 +1,5 @@
 from django.db import models
 from main.models import Item
-from django.core.mail import BadHeaderError, send_mail
 
 class Order(models.Model):
     """user's data"""
@@ -27,6 +26,7 @@ class Order(models.Model):
 
     def get_total_cost(self):
         return sum(item.get_cost() for item in self.items.all())
+    
 
 
 class OrderItem(models.Model):
@@ -37,7 +37,6 @@ class OrderItem(models.Model):
         quantity = models.PositiveIntegerField(default=1)
         size = models.BooleanField(default=False)
         total_price = models.IntegerField()
-        comment = models.CharField(max_length=350)
 
         def __str__(self):
             return '{}'.format(self.id)
