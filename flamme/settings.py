@@ -27,8 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'manyam245@gmail.com' #NEED TO MAKE NORMAL MAIL
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_HOST_USER = 'phoenix.flamme@mail.ru' 
 EMAIL_HOST_PASSWORD = 'your_password'
 # если используется защищенное соединение
 EMAIL_PORT = 587

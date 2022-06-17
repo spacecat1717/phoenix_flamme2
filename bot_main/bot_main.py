@@ -1,7 +1,5 @@
 import sqlite3, time
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackQueryHandler
-from django.conf import settings
-from orders.models import Order
 
 """DB connect"""
 conn = sqlite3.connect('/home/spacecat/CODE/phoenix_flamme2/phoenix_db3', check_same_thread=False)
@@ -83,33 +81,14 @@ def orderinfo(update, context):
     get_order_info(update, order_id)
     execute_email(update, order_id)
     update.message.reply_text('Введи трек номер для отправки')
-
-def execute_email(update, order_id):
-    """executing customer's email from db by order_id"""
-    global email
-    cursor.execute("SELECT email FROM orders_order WHERE id=?", (order_id,))
-    email = cursor.fetchall()
-    send_track(update, email)
-    
-
-def send_track(update, email):
-    """sending track to customer"""
-    global track
-    order = Order
-    track_num = str(track)
-    order.send_track(email, track_num)
-    update.message.reply_text('Трек отправлен') 
     
     """distribute user's text to func"""
 def distributor(update, context): #has a conflict between this func and others (it's strange)
     global track
     update.message.reply_text('Введи номер заказа')
     text_received = update.message.text
-    if text_received.isnumeric() and len(text_received)<5:
+    if text_received.isnumeric():
         orderinfo(update, text_received)
-    elif text_received.isnumeric() and len(text_received) > 5:
-        track = text_received
-        send_email(update, track)
 
 """main func"""
 def main():
@@ -122,7 +101,6 @@ def main():
     dispatcher.add_handler(CommandHandler('help', help))
     #handlers for custom commands
     dispatcher.add_handler(CommandHandler('orderinfo', distributor))
-    dispatcher.add_handler(CommandHandler('sendtrack', distributor))
     #text handler
     dispatcher.add_handler(MessageHandler(Filters.text , distributor))
     #SERVISE HANDLERS
