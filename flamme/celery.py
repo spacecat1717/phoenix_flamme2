@@ -14,16 +14,15 @@ app.autodiscover_tasks()
 app.autodiscover_tasks()
 
 #TEST
-app.conf.beat_schedule = {
-                'check-db-every-single-minute': {
-                'task': 'orders.tasks.send_track',
-                'schedule': crontab(),
-    },
-}
-
-#FINAL!!!!!
 #app.conf.beat_schedule = {
+#                'check-db-every-single-minute': {
+#                'task': 'orders.tasks.send_track',
+#                'schedule': crontab(),
+#    },
+#}
+#FINAL!!!!!
+app.conf.beat_schedule = {
     
-    #'run every saturday at midnight': {'task': 'orders.tasks.send_track',
-    #        'schedule': crontab(minute='0', hour='0', day_of_week='sat') },
-    #                    }
+    'run every saturday at noon': {'task': 'orders.tasks.send_track',
+            'schedule': crontab(minute='0', hour='12', day_of_week='sat') },
+                        }

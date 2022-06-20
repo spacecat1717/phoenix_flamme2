@@ -11,8 +11,8 @@ def send_track():
     #executed orders from sat to fri (6 days)
     #execution begins every sat at 0:00
     #FINAL
-    start = datetime.datetime.now() - datetime.timedelta(days=1)
-    period = start - datetime.timedelta(days=3)
+    start = datetime.datetime.now() - datetime.timedelta(hours=24)
+    period = start - datetime.timedelta(days=6)
     #TEST
     #start = datetime.datetime.now()
     #period = start - datetime.timedelta(hours=3)

@@ -1,4 +1,4 @@
-import sqlite3, time
+import sqlite3, time, datetime
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackQueryHandler
 
 """DB connect"""
@@ -61,6 +61,16 @@ def get_order_info (update,order_id):
     except:
         return update.message.reply_text('Заказ не найден')
 
+def last_orders (update, context):
+    """orders from week ago to yesterday"""
+    start = datetime.datetime.now()
+    period = start - datetime.timedelta(days=6)
+    cursor.execute("SELECT id FROM orders_order WHERE created BETWEEN ? AND ?", (period, start, ))
+    order_ids=cursor.fetchall()
+    for i in order_ids:
+        order_id = i[0]
+        get_order_info(update, order_id)
+
 """commands"""
 def start(update, context):
     first_name = update.message.chat.first_name
@@ -71,7 +81,7 @@ def help(update, context):
     #orderinfo - upload info by order number
     #sendtrack - email to customer with track num
     #lastorders - orders for last week from DB
-    commands = ['/start', '/help', '/orderinfo', '/sendtrack', '/lastorders']
+    commands = ['/start', '/help', '/orderinfo', '/lastorders']
     service_commands = ['/timer', '/db_count']
     update.message.reply_text(f'Доступные команды: \n {commands} \n Служебные команды: \n {service_commands}')
 
@@ -101,6 +111,7 @@ def main():
     dispatcher.add_handler(CommandHandler('help', help))
     #handlers for custom commands
     dispatcher.add_handler(CommandHandler('orderinfo', distributor))
+    dispatcher.add_handler(CommandHandler('lastorders', last_orders))
     #text handler
     dispatcher.add_handler(MessageHandler(Filters.text , distributor))
     #SERVISE HANDLERS
