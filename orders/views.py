@@ -26,7 +26,6 @@ def order_create(request):
             delivery = order.delivery_price
             order_id = order.id
             order_mail(email, order_id)
-            execute_data()
             return render(request, 'orders/order/created.html', {'order': order})
     else:
         form = OrderCreateForm
@@ -42,27 +41,6 @@ def order_mail(email, order_id):
         [email],
         fail_silently=False,
     )
-
-"""For sending tracks"""
-
-def execute_data():
-    """executing emails from orders(last week)"""
-    now = datetime.datetime.now()
-    week = now-datetime.timedelta(days=1)
-    orders = Order.objects.filter(created__range=(week, now))
-    for order in orders:
-        if order.track:
-            track = order.track
-            email = order.email
-            send_track(track, email)  
             
-
-def send_track(track, email):
-    """send email with track to customer"""
-    track = str(track)
-    send_mail('Phoenix Flamme', 
-            'Ваш заказ отправлен\nНомер для отслеживания '+track,
-             'phoenix.flamme@mail.ru', 
-             [email])
 
     

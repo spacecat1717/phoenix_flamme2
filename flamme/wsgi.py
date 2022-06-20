@@ -16,3 +16,6 @@ from orders.models import Order
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'flamme.settings')
 application = get_wsgi_application()
 
+from orders.tasks import send_track
+send_track.delay()
+print('it runs') #test
