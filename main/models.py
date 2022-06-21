@@ -24,6 +24,7 @@ class Item(models.Model):
     photo2 = models.ImageField(upload_to = 'media/main/static/')
     #for size choice
     size = models.BooleanField(default=False)
+    pickup = models.BooleanField(default=False)
     class Meta:
         ordering = ('title',)
         

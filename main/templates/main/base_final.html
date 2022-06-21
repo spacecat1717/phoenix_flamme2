@@ -4,42 +4,37 @@
 {% bootstrap_javascript %}
 <!DOCTYPE html>
 <html lang="ru">
-<head> 
-  <title> Phoenix Flamme  </title>
-</head>
-<body>
-  <nav class="navbar navbar-expand-xxl" style="background-color: #E8E3B9">
-    <div class="container-fluid">
-      <a class="navbar-brand">Phoenix Flamme</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'main:categories' %}">Товары</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="{% url 'main:categories' %}">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
-          </li>
-        </ul>
-        </ul>
-      </div>
-    </div>
-  </nav>
-</body>
+    <head> 
+      <meta charset="UTF-8">
+      <title> Phoenix Flamme  </title>
+      <link rel="stylesheet" type="text/css" href="{% static 'css/stylesheet.css' %}" >
+    </head>
+    <body>
+      <nav class="navbar-dark navbar-expand-lg" style="background-color: #336600">
+        <div class="container-fluid">
+          <a class="navbar-brand">Phoenix Flamme</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+           <ul class="navbar-nav">
+              <li class="nav-item">
+               <a class="nav-link" href="{% url 'main:info' %}" >Доставка и оплата</a>
+             </li>
+             <li class="nav-item">
+                <a class="nav-link" href="{% url 'main:categories' %}">Товары</a>
+              </li>
+              <li class="nav-item">
+               <a class="nav-link" href="{% url 'main:topics' %}">Авторская колонка</a>
+             <li class="nav-item">
+                <a class="nav-link" href="{% url 'main:feedback_list' %}">Отзывы</a>
+              </li>
+             <li class="nav-item">
+                <a class="nav-link" href="{% url 'main:contacts' %}">Контакты</a>
+              </li>
+           </ul>
+          </div>
+        </div>
+      </nav>
+    </body>
+</html>

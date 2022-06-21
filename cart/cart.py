@@ -3,11 +3,12 @@ from django.conf import settings
 from main.models import Item
 
 
+
 class Cart(object):
 
     def __init__(self, request):
         """
-        Инициализируем корзину
+        initialize cart
         """
         self.session = request.session
         cart = self.session.get(settings.CART_SESSION_ID)
@@ -18,7 +19,7 @@ class Cart(object):
 
     def add(self, item, quantity=1, update_quantity=False, change_size=False):
         """
-        Добавить продукт в корзину или обновить его количество.
+        Add product to cart and update its quantity
         """
         product_id = str(item.id)
         if product_id not in self.cart:
@@ -35,14 +36,13 @@ class Cart(object):
         self.save()
 
     def save(self):
-        # Обновление сессии cart
+        # update session
         self.session[settings.CART_SESSION_ID] = self.cart
-        # Отметить сеанс как "измененный", чтобы убедиться, что он сохранен
         self.session.modified = True
 
     def remove(self, item):
         """
-        Удаление товара из корзины.
+        Delete product from cart
         """
         product_id = str(item.id)
         if product_id in self.cart:
@@ -51,10 +51,9 @@ class Cart(object):
 
     def __iter__(self):
         """
-        Перебор элементов в корзине и получение продуктов из базы данных.
+        Execution products' data from db
         """
         product_ids = self.cart.keys()
-        # получение объектов product и добавление их в корзину
         products = Item.objects.filter(id__in=product_ids)
         for product in products:
             self.cart[str(product.id)]['product'] = product
@@ -66,18 +65,20 @@ class Cart(object):
 
     def __len__(self):
         """
-        Подсчет всех товаров в корзине.
+        Counting products in cart
         """
         return sum(item['quantity'] for item in self.cart.values())
 
+
     def get_total_price(self):
         """
-        Подсчет стоимости товаров в корзине.
+        Counting price for products in cart
         """
+        delivery_price = 300
         return sum(item['price'] * item['quantity'] for item in
-                self.cart.values()) + 300
+                self.cart.values()) + delivery_price 
 
     def clear(self):
-        # удаление корзины из сессии
+        """Delete cart from session"""
         del self.session[settings.CART_SESSION_ID]
         self.session.modified = True    

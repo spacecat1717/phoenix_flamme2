@@ -31,10 +31,9 @@
                     <td>{{ product.title }}</td>
                     <td>{{ item.quantity }}</td>
                     <td>{{ item.size }}</td>
-                    <td>{{ product.id }}</td> <!--works!-->
+                    <td>{{ product.id }}</td> 
                     <td> <a href="{% url 'cart:cart_remove' product.id %}"> Удалить товар </a>
                     <td class="num">₽{{ item.price }}</td>
-                    <td class="num">Стоимость доставки: 300 ₽</td>
                     <td class="num">₽{{ item.total_price }}</td>
                     
                 </tr>
@@ -43,11 +42,12 @@
         <tr class="total">
             <td>Total</td>
             <td colspan="4"></td>
-            <td class="num">₽{{ cart.get_total_price }}</td>
+            <td class="num">₽{{ cart.get_total_price}}</td>
         </tr>
         </tbody>
     </table>
     <p class="text-right">
+        <p> Стоимость доставки: 300 ₽</p>
         <a href="{% url 'main:categories' %}" class="button light">Продолжить покупки</a>
         <a href="{% url 'orders:order_create' %}" class="button"> Оформить заказ </a>
     </p>
