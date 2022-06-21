@@ -20,7 +20,7 @@ def timer(update, context):
         db_count(update)   
 
 def db_count(update): 
-    """count lines in db table"""
+    """execute last order's id's"""
     cursor.execute("SELECT id FROM orders_order")
     tmp = cursor.fetchall()
     for i in tmp:

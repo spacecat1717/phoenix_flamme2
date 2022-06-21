@@ -1,0 +1,8 @@
+<!---template for one topic-->
+{% extends "main/base.html" %}
+{% load static %}
+{% block content %}
+  <h3>{{topic.title}}</h3>
+  <img src="{{topic.photo.url}}">
+  <p>{{ topic.text}}</p>
+{% endblock content %}

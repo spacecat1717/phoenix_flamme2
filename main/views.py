@@ -39,6 +39,13 @@ def topics(request):
     context = {'topics':topics}
     return render(request, 'main/topics.html', context)
 
+def topic(request, topic_id):
+    """one topic"""
+    topic = Topic.objects.get(id=topic_id)
+    context = {'topic': topic}
+    return render(request, 'main/topic.html', context)
+
+
 """Feedback views"""
 
 def add_feedback(request):

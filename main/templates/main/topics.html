@@ -7,9 +7,7 @@
 
       {% for topic in topics %}
           <li>
-            <img src="{{topic.photo.url}}">
-            <p> {{ topic.title }}</p>
-            <p> {{ topic.text | linebreaks }}</p>
+            <a href="{% url 'main:topic' topic.id %}">{{topic.title}}</a>
           </li>
           {% empty %}
             <li> Здесь скоро появятся интересные статьи </li>

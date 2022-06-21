@@ -16,6 +16,7 @@ urlpatterns = [
     path('info/', views.info, name='info'),
     #topics urls
     path('topics/', views.topics, name='topics'),
+    path('topics/<topic_id>/', views.topic, name='topic'),
     #feedback urls
     path('feedbacks/', views.feedback_list, name='feedback_list'),
     path('feedbacks/new_feedback/', views.add_feedback, name='add_feedback'),
