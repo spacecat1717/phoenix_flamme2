@@ -4,10 +4,12 @@
 {% block content %}
   <p>
       <a href="{% url 'main:index' %}"></a>
-      Тестовый текст
+      <p>Истории, рассказанные через ароматы </p>
+      <h3> Новые чудеса в нашей лавочке</h3>
       {% for item in items %}
         <li>
-          <img src="{{item.photo1.url}}">
+          <img src="{{item.photo1.url}}" width="200" height="200">
+          <br>
           <a href="{% url 'main:item' item.id %}" > {{item.title}} </a>
           <br>
           <p> {{ item.description | linebreaks }}</p>

@@ -12,7 +12,7 @@
     <body>
       <nav class="navbar-dark navbar-expand-lg" style="background-color: #336600">
         <div class="container-fluid">
-          <a class="navbar-brand">Phoenix Flamme</a>
+          <a class="navbar-brand" href="{% url 'main:index' %}">Phoenix Flamme</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
            <span class="navbar-toggler-icon"></span>
           </button>
@@ -31,6 +31,18 @@
               </li>
              <li class="nav-item">
                 <a class="nav-link" href="{% url 'main:contacts' %}">Контакты</a>
+              </li>
+              <li class="nav-item">
+                {% with total_items=cart|length %}
+                  {% if cart|length > 0 %}
+                    <a class="nav-link" href="{% url 'cart:cart_detail' %}">Ваша корзина
+                      {{ total_items }} шт, 
+                      ₽{{ cart.get_total_price }}
+                    </a>
+                    {% else %}
+                      <a class="nav-link disabled">Корзина пока пуста</a>
+                  {% endif %}
+                {% endwith %}
               </li>
            </ul>
           </div>
