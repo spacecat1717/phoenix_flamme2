@@ -8,6 +8,7 @@ from django.utils.translation import gettext_lazy as _
 class Category(models.Model):
     """Class for categories of items"""
     title = models.CharField(max_length = 200)
+    description = models.TextField()
     class Meta:
         verbose_name_plural = 'categories'
     def __str__(self):
@@ -24,7 +25,7 @@ class Item(models.Model):
     photo2 = models.ImageField(upload_to = 'media/main/static/')
     #for size choice
     size = models.BooleanField(default=False)
-    pickup = models.BooleanField(default=False)
+    show_on_main = models.BooleanField(default=False)
     class Meta:
         ordering = ('title',)
         

@@ -1,3 +1,4 @@
+import random
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView
 from django.core.files.storage import FileSystemStorage
@@ -9,7 +10,9 @@ from .forms import FeedbackForm
 
 def index (request):
     """main page"""
-    return render(request, 'main/index.html')
+    #on main page will show items that have 'show_on_main' field
+    items = Item.objects.filter(show_on_main=True)    
+    return render(request, 'main/index.html', {'items':items})
 
 def categories(request):
     """list of caregories"""

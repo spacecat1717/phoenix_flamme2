@@ -1,9 +1,17 @@
 <!--template for main page-->
 {% extends "main/base_final.html" %}
+{% load static %}
 {% block content %}
   <p>
       <a href="{% url 'main:index' %}"></a>
       Тестовый текст
-
+      {% for item in items %}
+        <li>
+          <img src="{{item.photo1.url}}">
+          <a href="{% url 'main:item' item.id %}" > {{item.title}} </a>
+          <br>
+          <p> {{ item.description | linebreaks }}</p>
+        </li>
+      {% endfor %}
   </p>
 {% endblock content %}
