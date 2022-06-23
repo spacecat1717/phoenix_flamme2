@@ -1,25 +1,100 @@
 <!---page of order creation-->
 {% extends "main/base_final.html" %}
 
-{% block title %}Оформление заказа{% endblock %}
-
-{% block content %}
-    <h1>Оформление заказа</h1>
-    <div class="order-info">
-        <h3>Ваш заказ</h3>
-        <ul>
-            {% for item in cart %}
-                <li>
-                    {{ item.quantity }} x {{ item.product.title }}
-                    <span>₽{{ item.total_price }}</span>
-                </li>
-            {% endfor %}
-        </ul>
-        <p>К оплате: ₽{{ cart.get_total_price }}</p>
-    </div>
-    <form action="." method="post" class="order-form">
-        {{ form.as_p }}
-        <p><input type="submit" value="Place order"></p>
+<body>
+    {% block content %}
+    <h1 class="card-title pricing-card-title">Оформление заказа</h1>
+    <br>
+        <h3 class="card-title pricing-card-title">Ваш заказ</h3>
+    <br>
+      <div class="list-group w-auto">
+          {% for item in cart %}
+            <ul class="list-group-item list-group-item d-flex gap-3 py-3" aria-current="true">
+              <img src="https://cdn-icons-png.flaticon.com/128/5277/5277650.png" alt="twbs" width="20" height="20" class="rounded-circle flex-shrink-0">
+              <div class=" gap-2 w-100 justify-content-between">
+                  <div>
+                    <h6 class="mb-0">{{ item.quantity }} x {{ item.product.title }}</h6>
+                    <h5 class="mb-0">₽{{ item.total_price }}</h5>
+                  </div>
+              </div>
+           </ul>
+        </div>
+        {% endfor %}
+            
+        <div class="text-start" >
+          <h5 class="card-title pricing-card-title">Общая стоимость: ₽{{ cart.get_total_price }}</h5>
+        </div>
+        <div class="text-start" style="background-color: #336600">
+            <h5 class="mb-0">Для перехода к оплате, пожалуйста, заполните форму ниже </h5>
+        </div>
+        <br>
+    <form action="." method="post" class="form-control form-control-sm">
         {% csrf_token %}
+        <div>
+          {{ form.non_field_errors }}
+          {{ form.field.errors }}
+          <label for="{{ form.first_name.id_for_label }}">Имя</label>
+          <br>
+          {{form.first_name}}
+        </div>
+        <br>
+        <div>
+          {{ form.non_field_errors }}
+          {{ form.field.errors }}
+          <label for="{{ form.last_name.id_for_label }}">Фамилия</label>
+          <br>
+          {{form.last_name}}
+        </div>
+        <br>
+        <div>
+          {{ form.non_field_errors }}
+          {{ form.field.errors }}
+          <label for="{{ form.email.id_for_label }}">Email</label>
+          <br>
+          {{form.email}}
+        </div>
+        <br>
+        <div>
+          {{ form.non_field_errors }}
+          {{ form.field.errors }}
+          <label for="{{ form.city.id_for_label }}">Город</label>
+          <br>
+          {{form.city}}
+        </div>
+        <br>
+        <div>
+          {{ form.non_field_errors }}
+          {{ form.field.errors }}
+          <label for="{{ form.address.id_for_label }}">Адрес доставки</label>
+          <br>
+          {{form.address}}
+        </div>
+        <br>
+        <div>
+            {{ form.non_field_errors }}
+            {{ form.field.errors }}
+            <label for="{{ form.postal_code.id_for_label }}">Индекс</label>
+            <br>
+            {{form.postal_code}}
+          </div>
+          <br>
+          <div>
+            {{ form.non_field_errors }}
+            {{ form.field.errors }}
+            <label for="{{ form.comment.id_for_label }}">Комментарий к заказу</label>
+            <br>
+            {{form.comment}}  
+          </div>
+          <br>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+                //Чекбокс про персональные данные//
+            </label>
+        </div>
+        <p><input class="btn btn-outline-success" type="submit" value="Перейти к оплате"></p>
     </form>
+    
 {% endblock %}
+</body>
