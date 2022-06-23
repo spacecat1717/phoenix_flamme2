@@ -1,22 +1,22 @@
 <!--cart main template-->
 {% extends "main/base_final.html" %}
 {% load static %}
-{% block title %}
-    Your shopping cart
-{% endblock %}
 {% block content %}
-    <h1>Your shopping cart</h1>
-    <table class="cart">
+
+<body>
+  <div class="text-center">
+    <h2>Ваша корзина</h2>
+  </div>
+    <table class="table table-striped">
         <thead>
         <tr>
-            <th>Image</th>
-            <th>Product</th>
-            <th>Quantity</th>
-            <th>Size</th>
-            <th>ID</th>
-            <th>Remove</th>
-            <th>Unit price</th>
-            <th>Price</th>
+            <th></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
@@ -25,30 +25,51 @@
                 <tr>
                     <td>
                     <a href="{{ product.get_absolute_url }}">
-                      <img src="{{ product.photo1.url }}" width="300" height="400">
+                      <div class="text-center">
+                        <img src="{{ product.photo1.url }}" width="150" height="150">
+                      </div>
                     </a>  
                     </td>
-                    <td>{{ product.title }}</td>
-                    <td>{{ item.quantity }}</td>
-                    <td>{{ item.size }}</td>
-                    <td>{{ product.id }}</td> 
-                    <td> <a href="{% url 'cart:cart_remove' product.id %}"> Удалить товар </a>
-                    <td class="num">₽{{ item.price }}</td>
-                    <td class="num">₽{{ item.total_price }}</td>
-                    
-                </tr>
+                    <td class="text-center"> 
+                        <h4>{{ product.title }}</h4>
+                    <td class="text-start">
+                          <h3>{{ item.quantity }}</h3>
+                    </td>
+                    <td >
+                      <p> За шт </p>
+                      <br>
+                        <h5 class="card-title pricing-card-title">₽{{item.price}}</h5>
+                    </td>
+                    <td >
+                        <p> Всего </p>
+                        <br>
+                          <h5 class="card-title pricing-card-title">₽{{ item.total_price }}</h5>
+                      </td>
+                    <td> 
+                        <a class="btn btn-outline-secondary" href="{% url 'cart:cart_remove' product.id %}"> Удалить </a>
+                   </tr>
             {% endwith %}
         {% endfor %}
-        <tr class="total">
-            <td>Total</td>
+        <tr>
+            <td>
+              <h4 class="card-title pricing-card-title">Total</h4>
+            </td>
             <td colspan="4"></td>
-            <td class="num">₽{{ cart.get_total_price}}</td>
+            <td>
+              <h4 class="card-title pricing-card-title">₽{{ cart.get_total_price}}</h4>
+            </td>
+        </tr>
+        <tr style="background-color: #336600">
+            <td></td>
+            <td colspan="4"></td>
+            <td></td>
         </tr>
         </tbody>
     </table>
     <p class="text-right">
-        <p> Стоимость доставки: 300 ₽</p>
-        <a href="{% url 'main:categories' %}" class="button light">Продолжить покупки</a>
-        <a href="{% url 'orders:order_create' %}" class="button"> Оформить заказ </a>
+        <h5 class="card-title pricing-card-title">*Стоимость доставки: 300 ₽</h5>
+        <a href="{% url 'main:categories' %}" class="btn btn-outline-secondary">Продолжить покупки</a>
+        <a href="{% url 'orders:order_create' %}" class="btn btn-outline-success"> Оформить заказ </a>
     </p>
 {% endblock %}
+</body>

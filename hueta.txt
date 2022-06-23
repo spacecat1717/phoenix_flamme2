@@ -16,3 +16,26 @@ def get_order_info (order_id):
     return result
 
 <img src="{% static 'icons/menu.png'"width='15' height='20' >
+
+<a href="https://www.flaticon.com/ru/free-icons/" title="лист иконки">Лист иконки от Freepik - Flaticon</a>
+
+% block content %}
+  <ul>
+      {% for category in categories %}
+        <li>
+          <a href="{% url 'main:category' category.id %}"> {{ category.title }}</a>
+        </li>
+      {% endfor %}
+  </ul>
+ {% endblock content %} 
+
+
+
+
+<div class="text-center">
+        <form action="{% url 'cart:cart_add' item.id %}" method="post" class="form">
+          {% csrf_token %}
+          <br>{% bootstrap_form cart_product_form %}<br>
+          <button type="submit" class="btn btn-primary" style="background-color: #336600">Добавить в корзину</button>
+        </form>
+      </div>

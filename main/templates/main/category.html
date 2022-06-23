@@ -7,7 +7,6 @@
     <section class="py-5 text-center container-fluid" style="background-color: #336600">
         <div class="row py-lg-0">
           <div class="col-sm-3 col-sm-6 mx-auto">
-            <h1 class="fw-light">{{ category.title }}</h1>
           </div>
           <div class="album py-0 bg-light">
             <div class="container-fluid">
@@ -19,7 +18,7 @@
                       <div class="card-body">
                         <a class="card-link" href="{% url 'main:item' item.id %}"> {{item.title}} </a>
                         <p class="card-text">{{ item.description | linebreaks }}</p>
-                        <p class="card-title pricing-card-title">₽{{item.price}}</p>
+                        <h4 class="card-title pricing-card-title">₽{{item.price}}</h4>
                       </div>
                     </div>
                   </div>

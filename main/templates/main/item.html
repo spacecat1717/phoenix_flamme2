@@ -1,25 +1,44 @@
 <!--template for one item page-->
 {% extends "main/base_final.html" %}
+{% load bootstrap5 %}
 {% load static %}
 
 <body>
     {% block content %}
-  
-      <img src="{{item.photo1.url}}">
-      <img src="{{item.photo2.url}}">
-      <p> Название {{ item.title}} </p>
-      <p> Краткое описание {{ item.description | linebreaks }} </p>
-      <p> Большое описание {{ item.text | linebreaks }}</p>
-      <p> Цена {{ item.price }} рублей </p>
-      <p> Размер {{ item.size }}  </p>
-    
-      <form action="{% url 'cart:cart_add' item.id %}" method="post">
-          {{ cart_product_form }}
+    <br>
+    <div class="text-center" style="background-color: #336600">
+      <br>
+        <img src="{{item.photo1.url}}" class="rounded" width="600" height="600">
+        <img src="{{item.photo2.url}}" class="rounded" width="600" height="600" >
+      </div>
+      <div class="px-3 py-5 my-4 text-center">
+        <h1 class="display-6 fw-bold">{{ item.title}}</h1>
+        <div class="col-sm-6 mx-auto">
+          <p class="lead mb-3">{{ item.description | linebreaks }}</p>
+          <p class="lead mb-3">{{ item.text | linebreaks }}</p>
+          <h4 class="card-title pricing-card-title">₽{{item.price}}</h4>
+          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center"></div>
+        </div>
+      </div>
+    <div class="text-center">
+        <form action="{% url 'cart:cart_add' item.id %}" method="post" class="form">
           {% csrf_token %}
-          <input type="submit" value="Добавить в корзину">
-      </form>
+          {{ cart_product_form.non_field_errors }}
+          {{ cart_product_form.field.errors }}
+            <label for="{{ cart_product_form.quantity.id_for_label }}">Количество</label>
+          {{cart_product_form.quantity}}
+          {{ cart_product_form.non_field_errors }}
+          {{ cart_product_form.field.errors }}
+          <label for="{{ cart_product_form.size.id_for_label }}">Мини-размер</label>
+          {{cart_product_form.size}}
+          <div>
+            <br>
+            <button type="submit" class="btn btn-primary" style="background-color: #336600">Добавить в корзину</button>
+          </div>
+        </form>
     
     {% endblock content %}
+</body>
       
 
     
