@@ -1,19 +1,28 @@
 <!--feedbacks template-->
 {% extends "main/base_final.html" %}
 {% load static %}
-{% block content %}
 
-  <h2> Отзывы </h2>
-  <ul>
-      <a href="{% url 'main:add_feedback' %}">Оставить отзыв </a>
+<body>
+  {% block content %}
+  <div class="text-center">
+    <br>
+    <h1 >Ваши отзывы </h1>
+      <br>
       {% for feedback in feedbacks %}
-         <li>
-            <img src="{{ feedback.photo.url }}" width="300" height="500">
-             <p> {{ feedback.name }} </p>
-             <p> {{ feedback.text | linebreaks }} </p>
-         </li>
+      <div style="background-color: #336600">
+        <img src="{{ feedback.photo.url }}" class="rounded" width="600" height="600">
+      </div>
+      <div class="px-4 py-4 my-3 ">
+        <p class="display-6 fw-bold">{{ feedback.name }}</p>
+        <div class="col-lg-6 mx-auto">
+          <p class="lead mb-3">{{ feedback.text | linebreaks }}</p>
+        </div>
+      </div>            
           {% empty %}
-            <h3> Отзывов пока нет </h3>
-      {% endfor %}  
-  </ul>
+          <div class="col-sm-4 col-sm-6 mx-auto">
+            <h1 class="fw-light">Здесь пока ничего нет, но вы можете это исправить!</h1>
+        {% endfor %} 
+        <a class="btn btn-primary" style="background-color: #336600" href="{% url 'main:add_feedback' %}">Оставить отзыв </a> 
+  </div>
   {% endblock content %}
+</body>
