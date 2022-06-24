@@ -1,17 +1,25 @@
 <!--template for topics list-->
 {% extends "main/base_final.html" %}
 {% load static %}
-{% block content %}
-  <p> Статьи </p>
-  <ul>
 
-      {% for topic in topics %}
-          <li>
-            <a href="{% url 'main:topic' topic.id %}">{{topic.title}}</a>
-          </li>
-          {% empty %}
-            <li> Здесь скоро появятся интересные статьи </li>
+<body>
+  {% block content %}
+  <h1>Статьи о парфюмерии от автора</h1>
+  <div class="list-group w-auto">
+    {% for topic in topics %}
+      <a href="{% url 'main:topic' topic.id %}" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+        <img src="https://cdn-icons-png.flaticon.com/128/5277/5277650.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+        <div class="d-flex gap-2 w-100 justify-content-between">
+          <div>
+            <h6 class="mb-0">{{ topic.title }}</h6>
+          </div>
+        </div>
+      </a>
+      {% empty %}
+        <div class="col-sm-4 col-sm-6 mx-auto">
+          <h1 class="fw-light">Здесь скоро будут авторские статьи</h1>
+        </div>
       {% endfor %}
-
-  </ul>
-{% endblock content %}  
+  </div>
+  {% endblock content %}
+</body>

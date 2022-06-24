@@ -1,9 +1,48 @@
+<!--template for contacts' page-->
 {% extends "main/base_final.html" %}
-{% block content %}
-  <h1>Контакты</h1>
-  {% for contact in contacts %}
-    <p>ВК {{ contact.vk }}</p>
-    <p>Почта {{ contact.email }}</p>
-    <p>Телеграм {{ contact.tlg }}</p>
-  {% endfor %}
-{% endblock content %}
+{% load static %}
+
+<body>
+  {% block content %}
+  <br>
+  <h2> Контакты</h2>
+  <br>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+          <th></th>
+          <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for contact in contacts %}
+      <tr>
+        <th>
+          <img src="{% static 'icons/VK_Blue_Logo_t.png' %}" alt="twbs" width="32" height="30" class="rounded-circle flex-shrink-0">
+        </th>
+        <td>
+          <a class="link-primary" href="{{ contact.vk }}">{{ contact.vk }}</a>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <img src="{% static 'icons/1904660-email-envelope-letter-mail-message-post-send_122510.png' %}" alt="twbs" width="32" height="30" class="rounded-circle flex-shrink-0">
+        </th>
+        <td>
+          <a class="link-primary" href="{{ contact.email }}">{{ contact.email }}</a>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <img src="{% static 'icons/telegram-256.png' %}" alt="twbs" width="32" height="30" class="rounded-circle flex-shrink-0">
+        </th>
+        <td>
+          <a class="link-primary" href="{{ contact.tlg }}">{{ contact.tlg }}</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endblock content %}  
+</body>
+  

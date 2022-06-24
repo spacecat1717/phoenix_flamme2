@@ -1,8 +1,18 @@
 <!---template for one topic-->
 {% extends "main/base_final.html" %}
 {% load static %}
-{% block content %}
-  <h3>{{topic.title}}</h3>
-  <img src="{{topic.photo.url}}">
-  <p>{{ topic.text}}</p>
-{% endblock content %}
+<body>
+  {% block content %}
+  <div class="text-center">
+    <br>
+    <h2>{{topic.title}}</h2>
+    <div style="background-color: #336600">
+      <img src="{{topic.photo.url}}" class="rounded" width="600" height="600">
+    </div>
+    <div class="px-4 py-4 my-3 ">
+      <div class="col-lg-6 mx-auto">
+        <p class="lead mb-3">{{ topic.text | linebreaks}}</p>
+      </div>
+  </div>
+  {% endblock content %}
+</body>
