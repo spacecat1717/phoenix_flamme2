@@ -1,11 +1,37 @@
 <!--new feedback template-->
 {% extends "main/base_final.html" %}
+{% load bootstrap5 %}
 
-{% block content %}
-  <p> Оставить отзыв </p>
-  <form method="post" enctype="multipart/form-data">
+<body>
+  {% block content %}
+    <h4> Оставить отзыв </h3>
+    <form method="post" enctype="multipart/form-data" class="form-control form-control-sm">
       {% csrf_token %}
-      {{ form.as_p }}
-      <button name='submit' > Отправить</button>
-  </form>
-{% endblock content %}
+      <div>
+        {{ form.non_field_errors }}
+        {{ form.field.errors }}
+        <label for="{{ form.name.id_for_label }}">Ваше имя</label>
+        <br>
+        {{form.name}}
+      </div>
+      <br>
+      <div>
+        {{ form.non_field_errors }}
+        {{ form.field.errors }}
+        <label for="{{ form.text.id_for_label }}">Текст отзыва</label>
+        <br>
+        {{form.text}}
+      </div>
+      <br>
+      <div>
+        {{ form.non_field_errors }}
+        {{ form.field.errors }}
+        <label for="{{ form.photo.id_for_label }}">Прикрепите фото</label>
+        <br>
+        {{form.photo}}
+      </div>
+      <br>
+      <button class="btn btn-primary" style="background-color: #336600" name='submit' > Отправить</button>
+    </form>
+  {% endblock %}
+</body>

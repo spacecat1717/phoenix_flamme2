@@ -1,6 +1,4 @@
-import random
 from django.shortcuts import render, redirect
-from django.views.generic import CreateView
 from django.core.files.storage import FileSystemStorage
 from .models import Category, Item, Topic, Feedback, Contacts, Info
 from cart.forms import CartAddProductForm
@@ -11,7 +9,7 @@ from .forms import FeedbackForm
 def index (request):
     """main page"""
     #on main page will show items that have 'show_on_main' field
-    items = Item.objects.filter(show_on_main=True)    
+    items = Item.objects.filter(show_on_main=True)   
     return render(request, 'main/index.html', {'items':items})
 
 def categories(request):
@@ -33,6 +31,14 @@ def item(request, item_id):
     cart_product_form = CartAddProductForm()  
     context = {'item': item, 'cart_product_form': cart_product_form}
     return render(request, 'main/item.html', context)
+
+def policy(request):
+    """privacy policy page view"""
+    return render(request, 'main/policy.html')
+
+def cookies(request):
+    """for modal window with cookies info"""
+    return render(request, 'main/cookies.html')
 
 """Topics views"""
 
@@ -82,6 +88,8 @@ def info(request):
     parts = Info.objects.all()
     context = {'parts': parts}
     return render (request, 'main/info.html', context)
+
+
 
 
 

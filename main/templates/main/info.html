@@ -1,11 +1,23 @@
+<!---template for information page-->
 {% extends "main/base_final.html" %}
-{% block content %}
-  <h1> Информация</h1>
+
+<body>
+  {% block content %}
+  <div class="text-center">
     {% for part in parts %}
-      <li>
-          <h3>{{ part.title }}</h3>
-          {{ part.text }}
-      </li>
+    <div class="px-4 py-4 my-3">
+      <p class="display-6 fw-bold">{{ part.title }}</p>
+      <div class="col-lg-6 mx-auto">
+        <p class="lead mb-3">{{ part.text |linebreaks}}</p>
+      </div>
+    </div>
+      {% empty %}
+        <div class="col-sm-4 col-sm-6 mx-auto">
+          <h1 class="fw-light">Мы скоро добавим сюда важную и полезную информацию о работе магазина</h1>
     {% endfor %}
-{% endblock content %}
+  </div>
+    {% endblock content %} 
+</body>
+
+
   

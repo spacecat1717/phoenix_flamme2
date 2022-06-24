@@ -1,10 +1,13 @@
 <!---page showing then order was created-->
 {% extends "main/base_final.html" %}
 
-{% block title %}Заказ оформлен{% endblock %}
+<body>
+    {% block content %}
+    <div class="col-lg-4 col-lg-6 mx-auto">
+        <h1 class="fw-light">Ваш заказ успешно оформлен. После его отправки, мы пришлем вам трек-номер на указанную почту.
+            Номер вашего заказа <strong>{{ order.id }}</strong>
+        </h1>
+    </div>
+    {% endblock %}
+</body>
 
-{% block content %}
-    <h1>Спасибо за ваш заказ</h1>
-    <p>Как только мы его отправим, вы получите письмо. Номер вашего заказа
-        <strong>{{ order.id }}</strong>.</p>
-{% endblock %}

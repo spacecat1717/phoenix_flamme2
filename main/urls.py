@@ -14,6 +14,7 @@ urlpatterns = [
     path('categories/category/<item_id>/', views.item, name="item"),
     path('contacts/', views.contacts, name='contacts'),
     path('info/', views.info, name='info'),
+    path('policy/', views.policy, name='policy'),
     #topics urls
     path('topics/', views.topics, name='topics'),
     path('topics/<topic_id>/', views.topic, name='topic'),
