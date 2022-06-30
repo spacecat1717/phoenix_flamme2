@@ -23,8 +23,6 @@ class Item(models.Model):
     price = models.IntegerField(default=100)
     photo1 = models.ImageField(upload_to = 'media/main/static/')
     photo2 = models.ImageField(upload_to = 'media/main/static/')
-    #for size choice
-    size = models.BooleanField(default=False)
     show_on_main = models.BooleanField(default=False)
     class Meta:
         ordering = ('title',)

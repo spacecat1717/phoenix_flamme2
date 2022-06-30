@@ -1,14 +1,17 @@
-import sqlite3, time, datetime
+import mariadb, time, datetime
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackQueryHandler
 
 """DB connect"""
-conn = sqlite3.connect('/home/spacecat/CODE/phoenix_flamme2/phoenix_db3', check_same_thread=False)
+conn = mariadb.connect(user="spacecat",
+        password="Teatea_0",
+        host="127.0.0.1",
+        port=3306,
+        database="phoenix_final")
 cursor = conn.cursor()
 #id of last executed order
 executed = 0
 #email for track sending
 email = ''
-track = ''
 
 """DB funcs"""
 
@@ -89,7 +92,6 @@ def orderinfo(update, context):
     """info about orders by id"""
     order_id = int(update.message.text)
     get_order_info(update, order_id)
-    execute_email(update, order_id)
     update.message.reply_text('Введи трек номер для отправки')
     
     """distribute user's text to func"""

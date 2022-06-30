@@ -12,6 +12,7 @@ import os, time, datetime
 from django.core.wsgi import get_wsgi_application
 from django.core.mail import BadHeaderError, send_mail
 from orders.models import Order
+ 
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'flamme.settings')
 application = get_wsgi_application()

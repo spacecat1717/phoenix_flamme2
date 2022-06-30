@@ -1,0 +1,3 @@
+This site was made for my friend's small buisness: cosmetic store. 
+At the request of the store owner, I can't public here module for online payment, that was connected
+I made this project for a month and week only by myself (include design)

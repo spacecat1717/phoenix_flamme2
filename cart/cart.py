@@ -17,22 +17,18 @@ class Cart(object):
             cart = self.session[settings.CART_SESSION_ID] = {}
         self.cart = cart
 
-    def add(self, item, quantity=1, update_quantity=False, change_size=False):
+    def add(self, item, quantity=1, update_quantity=False):
         """
         Add product to cart and update its quantity
         """
         product_id = str(item.id)
         if product_id not in self.cart:
                 self.cart[product_id] = {'quantity': 0,
-                                 'price': item.price,
-                                 'size': item.size}
+                                 'price': item.price}
         if update_quantity:
             self.cart[product_id]['quantity'] = quantity
         else:
-            self.cart[product_id]['quantity'] += quantity
-        #change price if user choose small size
-        if change_size:
-            self.cart[product_id]['price'] -=100
+            self.cart[product_id]['quantity'] += quantity    
         self.save()
 
     def save(self):
