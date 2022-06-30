@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-$6fq)8u(g6g-sor_@aific=2nxth2s-xh7ywpwl!uzxmd_m0g6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['cy70928.tmweb.ru']
+ALLOWED_HOSTS = []
 
 EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_HOST_USER = 'phoenix.flamme@mail.ru' 

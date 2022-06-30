@@ -1,4 +1,4 @@
-import mariadb, time, datetime, asyncio
+import mysql.connector, time, datetime, asyncio
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
@@ -15,11 +15,11 @@ class OrderRequest(StatesGroup):
 
 
 """DB connect"""
-conn = mariadb.connect(user="spacecat",
-        password="Teatea_0",
-        host="127.0.0.1",
+conn = connect(host="localhost",
+		user="cy70928_phoenix",
+        password="Donteverfakeit000",
         port=3306,
-        database="phoenix_final")
+        database="cy70928_phoenix")
 cursor = conn.cursor()
 #id of last executed order
 executed = 0
