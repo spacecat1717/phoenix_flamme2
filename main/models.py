@@ -14,15 +14,23 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
+class Collection(models.Model):
+    """collections of items"""
+    category = models.ForeignKey(Category, on_delete = models.CASCADE)
+    title = models.CharField(max_length = 100)
+    description = models.TextField()
+    def __str__(self):
+        return self.title
+
 class Item(models.Model):
     """Class for items"""
     category = models.ForeignKey(Category, on_delete = models.CASCADE)
+    collection = models.ForeignKey(Collection, on_delete = models.CASCADE)
     title = models.CharField(max_length=150)
     description = models.CharField(max_length=250)
     text = models.TextField()
     price = models.IntegerField(default=100)
     photo1 = models.ImageField(upload_to = 'media/main/static/')
-    photo2 = models.ImageField(upload_to = 'media/main/static/')
     show_on_main = models.BooleanField(default=False)
     class Meta:
         ordering = ('title',)

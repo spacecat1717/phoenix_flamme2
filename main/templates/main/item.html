@@ -9,11 +9,11 @@
     <div class="text-center" style="background-color: #336600">
       <br>
         <img src="{{item.photo1.url}}" class="rounded" width="600" height="600">
-        <img src="{{item.photo2.url}}" class="rounded" width="600" height="600" >
       </div>
       <div class="px-3 py-5 my-4 text-center">
         <h1 class="display-6 fw-bold">{{ item.title}}</h1>
         <div class="col-sm-6 mx-auto">
+          <p class="lead mb-3">{{ item.collection | linebreaks }}</p>
           <p class="lead mb-3">{{ item.description | linebreaks }}</p>
           <p class="lead mb-3">{{ item.text | linebreaks }}</p>
           <h4 class="card-title pricing-card-title">₽{{item.price}}</h4>

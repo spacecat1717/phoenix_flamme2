@@ -1,0 +1,36 @@
+<!--temlplate for one collection-->
+{% extends "main/base_final.html" %}
+{% load static %}
+
+<body>
+    {% block content %}
+    <section class="py-5 text-center container-fluid" style="background-color: #336600">
+        <div class="row py-lg-0">
+          <div class="col-sm-3 col-sm-6 mx-auto">
+          </div>
+          <div class="album py-0 bg-light">
+            <div class="container-fluid">
+              <div class="row row-cols-md-3 row-cols-sm-2 row-cols-md-3 g-2">
+                {% for item in items %}
+                <div class="col-md-3">
+                    <div class="card shadow-sm">
+                      <img class="bd-placeholder-img card-img-top" width="150" height="300" src="{{item.photo1.url}}">
+                      <div class="card-body">
+                        <a class="card-link" href="{% url 'main:item' item.id %}"> {{item.title}} </a>
+                        <p class="card-text"> {{item.collection }}</p>
+                        <p class="card-text">{{ item.description | linebreaks }}</p>
+                        <h4 class="card-title pricing-card-title">₽{{item.price}}</h4>
+                      </div>
+                    </div>
+                  </div>
+                  {% empty %}
+                  <div class="col-sm-3 col-sm-6 mx-auto">
+                    <h1 class="fw-light">Здесь скоро появится что-то волшебное!</h1>
+                  </div>
+                  {% endfor %}
+              </div>
+            </div>
+        </div> 
+    </section>
+    {% endblock content %}
+</body>

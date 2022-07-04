@@ -10,8 +10,10 @@ urlpatterns = [
     #basic urls
     path('', views.index, name='index'),
     path('categories/', views.categories, name='categories'),
-    path('categories/<category_id>/', views.category, name='category'),
     path('categories/category/<item_id>/', views.item, name="item"),
+    path('categories/<category_id>/collections', views.collections, name='collections'),
+    path('categories/category/<collection_id>', views.collection, name='collection'),
+    
     path('contacts/', views.contacts, name='contacts'),
     path('info/', views.info, name='info'),
     path('policy/', views.policy, name='policy'),

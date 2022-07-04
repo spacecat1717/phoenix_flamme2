@@ -1,7 +1,8 @@
 import time, datetime
 from django.template import Template, Context
 from django.shortcuts import render
-from django.core.mail import BadHeaderError, send_mail
+from django.conf import settings
+from django.core.mail import BadHeaderError, send_mail, get_connection
 from .models import OrderItem, Order
 from .forms import OrderCreateForm
 from cart.cart import Cart
@@ -55,25 +56,41 @@ def order_create(request):
 def order_mail(email, order_id):
     """sending email to customer after order"""
     order_id = str(order_id)
+    connection = get_connection(
+        host=settings.EMAIL_HOST,
+        port=settings.EMAIL_PORT,
+        username=settings.EMAIL_HOST_USER,
+        password=settings.EMAIL_HOST_PASSWORD,
+        use_tls=True
+        )
+
     send_mail (
-        'Phoenix Flamme',
-        'Спасибо за ваш заказ в магазине Phoenix Flamme. \nСразу после отправки мы пришлем вам трек-номер :)\nНомер вашего заказа: '+order_id,
-        'phoenix.flamme@mail.ru', 
-        [email],
-        fail_silently=False,
+    'Phoenix Flamme',
+    'Спасибо за ваш заказ в магазине Phoenix Flamme. \nСразу после отправки мы пришлем вам трек-номер :)\nНомер вашего заказа: '+order_id,
+    settings.EMAIL_HOST_USER, 
+    [email],
+    connection=connection,
+    fail_silently=False,
     )
 
 def order_notification(order_id):
-    #executing order info from db
+    """order notifications for owner"""
     order = Order.objects.get(id=order_id)
     items = OrderItem.objects.filter(order=order)
     template = Template(NOTIFICATION_TEMPLATE)
-    print(order, items)
+    connection = get_connection(
+    		host=settings.EMAIL_HOST,
+    		port=settings.EMAIL_PORT,
+    		username=settings.EMAIL_HOST_USER,
+    		password=settings.EMAIL_HOST_PASSWORD,
+    		use_tls=True
+			)
     send_mail(
         'New order',
         template.render(context=Context({'order':order, 'items':items})),
-        'phoenix.flamme@mail.ru',
-        ['phoenix.flamme@mail.ru'],
+        settings.EMAIL_HOST_USER,
+        ['vne.sistemi@mail.ru'],
+        connection=connection,
         fail_silently=False,
     )
     

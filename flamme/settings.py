@@ -29,14 +29,10 @@ ALLOWED_HOSTS = []
 
 EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_HOST_USER = 'phoenix.flamme@mail.ru' 
-EMAIL_HOST_PASSWORD = 'your_password'
-# если используется защищенное соединение
+EMAIL_HOST_PASSWORD = 'zXaupJffDwWpZ68CKitV'
 EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-else:
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_LOCALTIME = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Application definition
 
@@ -107,10 +103,9 @@ WSGI_APPLICATION = 'flamme.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'phoenix_final',
         'USER': 'spacecat',
-        'PASSWORD': 'Teatea_0',
         'HOST': 'localhost',
         'PORT': '',
         

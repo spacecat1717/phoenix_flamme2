@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.files.storage import FileSystemStorage
-from .models import Category, Item, Topic, Feedback, Contacts, Info
+from django.conf import settings
+from .models import Category, Item, Topic, Feedback, Contacts, Info, Collection
 from cart.forms import CartAddProductForm
 from .forms import FeedbackForm
 
@@ -18,12 +19,26 @@ def categories(request):
     context = {'categories': categories}
     return render(request, 'main/categories.html', context)
 
-def category(request, category_id):
-    """one category with items list"""
+#def category(request, category_id):
+#    """one category with items list"""
+#    category = Category.objects.get(id=category_id)
+ #   items = category.item_set.order_by('title')
+ #   context = {'items': items}
+ #   return render (request, 'main/collections.html', context)
+
+def collections(request, category_id):
+    """list of collections"""
     category = Category.objects.get(id=category_id)
-    items = category.item_set.order_by('title')
+    collections = category.collection_set.order_by('title')
+    context = {'collections': collections}
+    return render(request, 'main/collections.html', context)
+
+def collection(request, collection_id):
+    """one collection"""
+    collection = Collection.objects.get(id=collection_id)
+    items = collection.item_set.order_by('title')
     context = {'items': items}
-    return render (request, 'main/category.html', context)
+    return render(request, 'main/collection.html', context)
 
 def item(request, item_id):
     """one item page"""
@@ -36,9 +51,6 @@ def policy(request):
     """privacy policy page view"""
     return render(request, 'main/policy.html')
 
-def cookies(request):
-    """for modal window with cookies info"""
-    return render(request, 'main/cookies.html')
 
 """Topics views"""
 
