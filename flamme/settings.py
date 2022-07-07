@@ -29,10 +29,10 @@ ALLOWED_HOSTS = []
 
 EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_HOST_USER = 'phoenix.flamme@mail.ru' 
-EMAIL_HOST_PASSWORD = 'zXaupJffDwWpZ68CKitV'
+EMAIL_HOST_PASSWORD = 'otbgM6E4c4rMucYF37Bl'
 EMAIL_PORT = 587
 EMAIL_USE_LOCALTIME = True
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Application definition
 

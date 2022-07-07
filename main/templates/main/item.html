@@ -27,6 +27,10 @@
           {{ cart_product_form.field.errors }}
             <label for="{{ cart_product_form.quantity.id_for_label }}">Количество</label>
           {{cart_product_form.quantity}}
+          {{ cart_product_form.non_field_errors}}
+          {{ cart_product_form.field.errors}}
+            <label for="{{cart_product_form.oil.id_for_label}}">Масляный вариант</label>
+          {{cart_product_form.oil}}
           <div>
             <br>
             <button type="submit" class="btn btn-primary" style="background-color: #336600">Добавить в корзину</button>

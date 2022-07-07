@@ -35,6 +35,14 @@
                     <td class="text-start">
                           <h3>{{ item.quantity }}</h3>
                     </td>
+                    <td class="text-center">
+                      <h5> Масляные </h5>
+                      {% if item.oil %}
+                      <label for="{{ item.oil}}">Да</label>
+                      {%else%}
+                      <label for="{{ item.oil}}">Нет</label>
+                      {%endif%}
+                    </td>
                     <td >
                       <p> За шт </p>
                       <br>

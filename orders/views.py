@@ -19,6 +19,7 @@ NOTIFICATION_TEMPLATE = """
 {% for item in items %}
   Товар: {{item.product}} 
   Количество: {{item.quantity}} 
+  Масляные: {{item.oil}}
   Цена за штуку: {{item.price}}
   Цена за все: {{item.total_price}}
 {% endfor %}
@@ -41,6 +42,7 @@ def order_create(request):
                                          product=item['product'],
                                          price=item['price'],
                                          quantity=item['quantity'],
+                                         oil=item['oil'],
                                          total_price=(item['price']*item['quantity']))
             # очистка корзины
             cart.clear()
